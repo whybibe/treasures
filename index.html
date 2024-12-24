@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Hunt Adventure</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<audio id="background-music" loop>
+    <source src="music/background.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+<div id="treasure-hunt-container">
+    <div id="message-board">
+        <p id="status-message">开始寻宝...</p>
+    </div>
+    <div id="progress-bar">
+        <div id="progress"></div>
+    </div>
+</div>
+<button id="start-button">开始下一步</button>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const backgroundMusic = document.getElementById('background-music');
+        function playMusic() {
+            backgroundMusic.play().catch(error => {
+                console.error("自动播放失败，请手动点击播放按钮。", error);
+            });
+        }
+        document.addEventListener('click', playMusic, { once: true });
+    });
+</script>
+<script src="js/treasureMap.js"></script>
+<script>
+    runTreasureHuntStep();
+</script>
+</body>
+</html>

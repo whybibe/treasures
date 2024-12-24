@@ -1,0 +1,70 @@
+/* styles.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#treasure-hunt-container {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#message-board {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    min-height: 50px;
+}
+
+#status-message {
+    margin: 0;
+}
+
+#progress-bar {
+    width: 100%;
+    background-color: #33ff00;
+    border-radius: 4px;
+    overflow: hidden;
+    height: 10px;
+}
+
+#progress {
+    width: 0%;
+    height: 100%;
+    background-color: #007bff;
+    transition: width 0.5s ease-in-out;
+}
+
+#start-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 9px #999;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#start-button:hover {
+    background-color: #3e8e41;
+}
+
+#start-button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
