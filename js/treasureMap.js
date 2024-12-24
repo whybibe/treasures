@@ -111,8 +111,8 @@ function* findTreasureGenerator() {
     savePlayerInfo(playerId, nickname, history);
 }
 
-function runTreasureHuntStep(gen, value) {
-    const result = gen.next(value);
+function runTreasureHuntStep(gen) {
+    const result = gen.next();
     if (result.done) {
         displayTreasureHuntProgress("寻宝完成！");
     } else {
@@ -121,14 +121,13 @@ function runTreasureHuntStep(gen, value) {
             const playerInfo = loadPlayerInfo();
             playerInfo.history.push({ date: new Date(), result: value });
             savePlayerInfo(playerInfo.playerId, playerInfo.nickname, playerInfo.history)
-            const startButton = document.getElementById('start-button');
-            startButton.textContent = "继续下一步";
             startButton.disabled = false;
         }).catch((error) => {
             displayTreasureHuntProgress(`任务失败: ${error}`);
-            const playerInfo = loadPlayerInfo() || { playerId, nickname, history: [] };
+            const playerInfo = loadPlayerInfo() || { playerId: 'defaultPlayerId', nickname: 'defaultNickname', history: [] };
             playerInfo.history.push({date: new Date(), result: `任务失败： ${error}`});
             savePlayerInfo(playerInfo.playerId, playerInfo.nickname, playerInfo.history);
+            startButton.disabled = false;
         });
     }
 }
@@ -144,7 +143,6 @@ const treasureHuntGen = findTreasureGenerator();
 
 const startButton = document.getElementById('start-button');
 startButton.addEventListener('click', () => {
-    // 在每次点击后立即禁用按钮，防止连续点击
     startButton.disabled = true;
     runTreasureHuntStep(treasureHuntGen);
 });

@@ -33,7 +33,10 @@
 </script>
 <script src="js/treasureMap.js"></script>
 <script>
-    runTreasureHuntStep();
+    document.addEventListener('DOMContentLoaded', (event) =>{
+        const treasureHuntGen = findTreasureGenerator();
+        runTreasureHuntStep(treasureHuntGen);
+    })
 </script>
 </body>
 </html>
