@@ -42,7 +42,7 @@ class TreasureMap {
     }
 
     static async loadGameData() {
-        const response = await fetch('txt/treasurehunt.txt');
+        const response = await fetch('txt.txt');
         const text = await response.text();
         const data = text.split('\n').reduce((acc, line) => {
             const [key, value] = line.split(': ');
@@ -72,6 +72,9 @@ function* findTreasureGenerator() {
         playerId = playerInfo.playerId;
         nickname = playerInfo.nickname;
         history = playerInfo.history;
+    }
+    else {
+        history = [];
     }
 
     const initialClue = yield TreasureMap.getInitialClue();
@@ -123,7 +126,7 @@ function runTreasureHuntStep(gen, value) {
             startButton.disabled = false;
         }).catch((error) => {
             displayTreasureHuntProgress(`任务失败: ${error}`);
-            const playerInfo = loadPlayerInfo();
+            const playerInfo = loadPlayerInfo() || { playerId, nickname, history: [] };
             playerInfo.history.push({date: new Date(), result: `任务失败： ${error}`});
             savePlayerInfo(playerInfo.playerId, playerInfo.nickname, playerInfo.history);
         });
