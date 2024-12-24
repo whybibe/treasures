@@ -42,7 +42,7 @@ class TreasureMap {
     }
 
     static async loadGameData() {
-        const response = await fetch('txt.txt');
+        const response = await fetch('./txt.txt');
         const text = await response.text();
         const data = text.split('\n').reduce((acc, line) => {
             const [key, value] = line.split(': ');
